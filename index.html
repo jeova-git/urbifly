@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="URBIFLY - Mobilidade urbana em Fortaleza. Baixe o app e viaje com segurança e praticidade.">
+    <title>URBIFLY - Mobilidade Urbana em Fortaleza</title>
+
+    <!-- Google Fonts (similar ao template original) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #fff;
+        }
+
+        /* HERO SECTION (idêntico ao template: gradiente azul, título centralizado) */
+        .hero {
+            background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+            color: white;
+            padding: 120px 20px 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+ top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23ffffff" fill-opacity="0.05" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,138.7C960,139,1056,117,1152,101.3C1248,85,1344,75,1392,69.3L1440,64L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>') no-repeat bottom;
+            background-size: cover;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .logo {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+
+        .hero h1 {
+            font-size: 52px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 40px;
+            opacity: 0.95;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+
+        .cta-primary {
+            background: #28a745;
+            color: white;
+            padding: 18px 40px;
+            font-size: 18px;
+            font-weight: 600;
+            border-radius: 50px;
+            text-decoration: none;
+            box-shadow: 0 6px 20px rgba(40, 167, 69, 0.3);
+            transition: all 0.3s;
+        }
+
+        .cta-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(40, 167, 69, 0.4);
+        }
+
+        .cta-secondary {
+            background: transparent;
+            color: white;
+            padding: 18px 40px;
+            font-size: 18px;
+            font-weight: 600;
+            border: 2px solid white;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .cta-secondary:hover {
+            background: white;
+            color: #007bff;
+        }
+
+        .social-proof {
+            font-size: 16px;
+            opacity: 0.9;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        /* SEÇÃO COMO FUNCIONA (3 colunas, similar ao template) */
+        .how-it-works {
+            padding: 80px 20px;
+            background: #f8f9fa;
+        }
+
+        .section-title {
+            font-size: 42px;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 60px;
+            color: #333;
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .step-card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s;
+        }
+
+        .step-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .step-icon {
+            width: 80px;
+            height: 80px;
+            background: #007bff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 32px;
+            color: white;
+        }
+
+        .step-card h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .step-card p {
+            font-size: 16px;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* SEÇÃO DIFERENCIAIS (2 colunas, imagem + lista) */
+        .benefits {
+            padding: 80px 20px;
+            background: white;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .benefit-image img {
+            width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        .benefit-list {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .benefit-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+        }
+
+        .benefit-icon {
+            width: 50px;
+            height: 50px;
+            background: #007bff;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: white;
+            flex-shrink: 0;
+        }
+
+        .benefit-item h3 {
+            font-size: 22px;
+            margin-bottom: 8px;
+            color: #333;
+        }
+
+        .benefit-item p {
+            font-size: 16px;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* CTA MOTORISTAS (seção escura) */
+        .cta-drivers {
+            padding: 80px 20px;
+            background: #343a40;
+            color: white;
+            text-align: center;
+        }
+
+        .cta-drivers h2 {
+            font-size: 40px;
+            margin-bottom: 20px;
+        }
+
+        .cta-drivers p {
+            font-size: 18px;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+
+        /* FAQ (accordion simples) */
+        .faq {
+            padding: 80px 20px;
+            background: #f8f9fa;
+        }
+
+        .faq-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        details {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            cursor: pointer;
+        }
+
+        summary {
+            font-size: 18px;
+            font-weight: 500;
+            color: #333;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        summary::after {
+            content: '+';
+            font-size: 24px;
+            color: #007bff;
+        }
+
+        details[open] summary::after {
+            content: '−';
+        }
+
+        details p {
+            margin-top: 15px;
+            font-size: 16px;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* FOOTER */
+        footer {
+            padding: 50px 20px 30px;
+            background: #343a40;
+            color: white;
+            text-align: center;
+        }
+
+        .footer-links {
+            margin: 20px 0;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: #adb5bd;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .social-icons {
+            margin: 20px 0;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .social-icons a {
+            display: inline-block;
+        }
+
+        .social-icons img {
+            width: 32px;
+            height: 32px;
+            transition: transform 0.3s;
+        }
+
+        .social-icons img:hover {
+            transform: scale(1.1);
+        }
+
+        .copyright {
+            font-size: 14px;
+            color: #adb5bd;
+            margin-top: 20px;
+        }
+
+        /* BOTÃO FLUTUANTE (adaptado para download de app ou contato) */
+        .float-button {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 20px;
+            right: 20px;
+            background: #007bff;
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 0 4px 15px rgba(0,123,255,0.3);
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .float-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(0,123,255,0.4);
+        }
+
+        /* RESPONSIVO */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 36px; }
+            .hero p { font-size: 16px; }
+            .cta-buttons { flex-direction: column; align-items: center; }
+            .benefits-grid { grid-template-columns: 1fr; gap: 40px; }
+            .section-title { font-size: 32px; }
+            .steps-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div class="container">
+            <div class="logo">🚗 URBIFLY</div>
+            <h1>Mobilidade Urbana em Fortaleza</h1>
+            <p>Viaje com segurança, conforto e praticidade. Baixe o app e descubra uma nova forma de se locomover na cidade.</p>
+            <div class="cta-buttons">
+                <a href="https://play.google.com/store/apps/details?id=com.urbifly.app" class="cta-primary" target="_blank">BAIXAR NO GOOGLE PLAY</a>
+                <a href="https://apps.apple.com/app/urbifly/id123456789" class="cta-secondary" target="_blank">BAIXAR NA APP STORE</a>
+            </div>
+            <div class="social-proof">
+                <span>✅ 500+ viagens realizadas</span>
+                <span>⭐ Avaliação 4.9/5</span>
+                <span>🚗 20+ motoristas verificados</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- COMO FUNCIONA -->
+    <section class="how-it-works">
+        <div class="container">
+            <h2 class="section-title">Como Funciona?</h2>
+            <div class="steps-grid">
+                <div class="step-card">
+                    <div class="step-icon">📍</div>
+                    <h3>1. Solicite sua Viagem</h3>
+                    <p>Abra o app, insira seu destino e veja o valor da corrida em tempo real. Sem surpresas!</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-icon">✅</div>
+                    <h3>2. Confirmação Instantânea</h3>
+                    <p>O app conecta você ao motorista mais próximo. Receba detalhes da viagem em segundos.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-icon">🚗</div>
+                    <h3>3. Viaje com Segurança</h3>
+                    <p>Rastreamento em tempo real, pagamento integrado e avaliação pós-viagem para garantir qualidade.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DIFERENCIAIS -->
+    <section class="benefits">
+        <div class="container">
+            <h2 class="section-title">Por Que Escolher a URBIFLY?</h2>
+            <div class="benefits-grid">
+                <div class="benefit-image">
+                    <img src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=600&h=400&fit=crop" alt="Motorista URBIFLY" loading="lazy">
+                </div>
+                <div class="benefit-list">
+                    <div class="benefit-item">
+                        <div class="benefit-icon">🛡️</div>
+                        <div>
+                            <h3>Segurança Verificada</h3>
+                            <p>Todos os motoristas passam por análise rigorosa de documentos, antecedentes e treinamento. Sua segurança em primeiro lugar.</p>
+                        </div>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-icon">💳</div>
+                        <div>
+                            <h3>Pagamento Seguro</h3>
+                            <p>Integrado ao app com Pix, cartão de crédito e débito. Sem manuseio de dinheiro durante a viagem.</p>
+                        </div>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-icon">📱</div>
+                        <div>
+                            <h3>Rastreamento em Tempo Real</h3>
+                            <p>Acompanhe a chegada do motorista e compartilhe sua localização com amigos e familiares.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA MOTORISTAS -->
+    <section class="cta-drivers">
+        <div class="container">
+            <h2>Seja um Motorista URBIFLY</h2>
+            <p>Trabalhe com flexibilidade, ganhe bem e faça parte de uma comunidade que valoriza profissionais comprometidos.</p>
+            <a href="https://wa.me/5585992463112?text=Olá!%20Quero%20ser%20motorista%20da%20URBIFLY" class="cta-primary" target="_blank" style="display: inline-block; margin-top: 20px;">QUERO SER MOTORISTA</a>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq">
+        <div class="container">
+            <h2 class="section-title">Perguntas Frequentes</h2>
+            <div class="faq-container">
+                <details>
+                    <summary>Preciso baixar o app?</summary>
+                    <p>Sim! O app é a forma mais segura e prática de solicitar viagens. Disponível para Android e iOS.</p>
+                </details>
+                <details>
+                    <summary>Como funciona o pagamento?</summary>
+                    <p>O pagamento é integrado ao app via Pix ou cartão. Você só confirma no final da viagem.</p>
+                </details>
+                <details>
+                    <summary>Os motoristas são verificados?</summary>
+                    <p>Sim, todos passam por verificação completa de documentos, antecedentes e treinamento obrigatório.</p>
+                </details>
+                <details>
+                    <summary>Qual a área de cobertura?</summary>
+                    <p>Atendemos toda a região metropolitana de Fortaleza, incluindo Caucaia e Eusébio.</p>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="logo" style="color: white; font-size: 32px; margin-bottom: 20px;">URBIFLY</div>
+            <div class="footer-links">
+                <a href="#sobre">Sobre</a>
+                <a href="#termos">Termos de Uso</a>
+                <a href="#privacidade">Privacidade</a>
+                <a href="#contato">Contato</a>
+            </div>
+            <div class="social-icons">
+                <a href="https://instagram.com/jeovasoares.eng.ascest" target="_blank">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram">
+                </a>
+                <a href="https://facebook.com/ASCEST-Engenharia" target="_blank">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook">
+                </a>
+            </div>
+            <div class="copyright">
+                © 2025 URBIFLY - ASCEST Engenharia. Todos os direitos reservados.<br>
+                CNPJ: XX.XXX.XXX/0001-XX | Fortaleza, CE
+            </div>
+        </div>
+    </footer>
+
+    <!-- BOTÃO FLUTUANTE (para contato rápido) -->
+    <a href="https://wa.me/5585992463112?text=Olá!%20Tenho%20dúvidas%20sobre%20a%20URBIFLY" class="float-button" target="_blank" title="Fale conosco">
+        💬
+    </a>
+
+</body>
+</html>
