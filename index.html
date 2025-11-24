@@ -1,547 +1,1101 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="URBIFLY - Mobilidade urbana em Fortaleza. Baixe o app e viaje com segurança e praticidade.">
-    <title>URBIFLY - Mobilidade Urbana em Fortaleza</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta
+    name="description"
+    content="URBIFLY - Mobilidade urbana em Fortaleza. App para Carros, Motos, Fretes e Guinchos, com opção de pedido via WhatsApp 0800-000-4185."
+  />
+  <title>URBIFLY - Mobilidade Urbana em Fortaleza</title>
 
-    <!-- Google Fonts (similar ao template original) -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Fonte moderna -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <style>
+    :root {
+      /* Paleta inspirada em design moderno tipo Emergent */
+      --cor-primaria: #2563eb;     /* azul vivo */
+      --cor-primaria-escura: #1d4ed8;
+      --cor-secundaria: #10b981;   /* verde */
+      --cor-acento: #f15;       /* amarelo/quase dourado */
+      --cor-fundo: #f3f4f6;
+      --cor-texto: #111827;
+      --cor-texto-suave: #6b7280;
+      --cor-escura: #111827;
+      --cor-clara: #ffffff;
+    }
 
-        body {
-            font-family: 'Inter', sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background-color: #fff;
-        }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-        /* HERO SECTION (idêntico ao template: gradiente azul, título centralizado) */
-        .hero {
-            background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
-            color: white;
-            padding: 120px 20px 80px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
+    body {
+      font-family: "Inter", sans-serif;
+      line-height: 1.6;
+      color: var(--cor-texto);
+      background-color: var(--cor-fundo);
+    }
 
-        .hero::before {
-            content: '';
-            position: absolute;
- top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23ffffff" fill-opacity="0.05" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,138.7C960,139,1056,117,1152,101.3C1248,85,1344,75,1392,69.3L1440,64L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>') no-repeat bottom;
-            background-size: cover;
-        }
+    img {
+      max-width: 100%;
+      display: block;
+    }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 2;
-        }
+    a {
+      text-decoration: none;
+    }
 
-        .logo {
-            font-size: 48px;
-            font-weight: 700;
-            margin-bottom: 20px;
-            color: #fff;
-        }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
 
-        .hero h1 {
-            font-size: 52px;
-            font-weight: 700;
-            margin-bottom: 20px;
-            line-height: 1.2;
-        }
+    /* HERO */
+    .hero {
+      position: relative;
+      overflow: hidden;
+      background: radial-gradient(circle at top left, #38bdf8 0%, #1d4ed8 40%, #020617 100%);
+      color: var(--cor-clara);
+      padding: 24px 0 80px;
+    }
 
-        .hero p {
-            font-size: 20px;
-            margin-bottom: 40px;
-            opacity: 0.95;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
+    .hero-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 40px;
+    }
 
-        .cta-buttons {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-bottom: 40px;
-        }
+    .logo-texto {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+ font-weight: 700;
+      font-size: 22px;
+    }
 
-        .cta-primary {
-            background: #28a745;
-            color: white;
-            padding: 18px 40px;
-            font-size: 18px;
-            font-weight: 600;
-            border-radius: 50px;
-            text-decoration: none;
-            box-shadow: 0 6px 20px rgba(40, 167, 69, 0.3);
-            transition: all 0.3s;
-        }
+    .logo-marca {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--cor-acento), var(--cor-secundaria));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+    }
 
-        .cta-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(40, 167, 69, 0.4);
-        }
+    .hero-nav-links {
+      display: flex;
+      gap: 20px;
+      font-size: 14px;
+    }
 
-        .cta-secondary {
-            background: transparent;
-            color: white;
-            padding: 18px 40px;
-            font-size: 18px;
-            font-weight: 600;
-            border: 2px solid white;
-            border-radius: 50px;
-            text-decoration: none;
-            transition: all 0.3s;
-        }
+    .hero-nav-links a {
+      color: #e5e7eb;
+      opacity: 0.9;
+    }
 
-        .cta-secondary:hover {
-            background: white;
-            color: #007bff;
-        }
+    .hero-nav-links a:hover {
+      opacity: 1;
+    }
 
-        .social-proof {
-            font-size: 16px;
-            opacity: 0.9;
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            flex-wrap: wrap;
-        }
+    .hero-conteudo {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+      gap: 50px;
+      align-items: center;
+    }
 
-        /* SEÇÃO COMO FUNCIONA (3 colunas, similar ao template) */
-        .how-it-works {
-            padding: 80px 20px;
-            background: #f8f9fa;
-        }
+    .hero-titulo {
+      font-size: 38px;
+      line-height: 1.2;
+      margin-bottom: 16px;
+      font-weight: 700;
+    }
 
-        .section-title {
-            font-size: 42px;
-            font-weight: 600;
-            text-align: center;
-            margin-bottom: 60px;
-            color: #333;
-        }
+    .hero-subtitulo {
+      font-size: 18px;
+      color: #e5e7eb;
+      margin-bottom: 24px;
+      max-width: 520px;
+    }
 
-        .steps-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 40px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
+    .hero-badge {
+     : inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(15, 23, 42, 0.7);
+      border-radius: 999px;
+      padding: 4px 14px;
+      font-size: 12px;
+      color: #e5e7eb;
+      margin-bottom: 14px;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+    }
 
-        .step-card {
-            background: white;
-            padding: 40px 30px;
-            border-radius: 15px;
-            text-align: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-            transition: transform 0.3s;
-        }
+    .hero-botoes {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 26px;
+    }
 
-        .step-card:hover {
-            transform: translateY(-5px);
-        }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 22px;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: 14px;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, color 0.2s ease;
+    }
 
-        .step-icon {
-            width: 80px;
-            height: 80px;
-            background: #007bff;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 20px;
-            font-size: 32px;
-            color: white;
-        }
+    .btn-primario {
+      background: linear-gradient(135deg, var(--cor-secundaria), #22c55e);
+      color: var(--cor-escura);
+      box-shadow: 0 10px 25px rgba(16, 185, 129 0.4);
+    }
 
-        .step-card h3 {
-            font-size: 24px;
-            margin-bottom: 15px;
-            color: #333;
-        }
+    .btn-primario:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 32px rgba(16, 185, 129, 0.6);
+    }
 
-        .step-card p {
-            font-size: 16px;
-            color: #666;
-            line-height: 1.6;
-        }
+    .btn-secundario {
+      background: transparent;
+      color: #e5e7eb;
+      border: 1px solid rgba(148, 163, 184, 0.7);
+    }
 
-        /* SEÇÃO DIFERENCIAIS (2 colunas, imagem + lista) */
-        .benefits {
-            padding: 80px 20px;
-            background: white;
-        }
+    .btn-secundario:hover {
+      background: rgba(15, 23, 42, 0.7);
+    }
 
-        .benefits-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
+    .hero-proof {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      font-size: 13px;
+      color: #e5e7eb;
+      opacity: 0.9;
+    }
 
-        .benefit-image img {
-            width: 100%;
-            border-radius: 15px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-        }
+    .hero-proof span {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
 
-        .benefit-list {
-            display: flex;
-            flex-direction: column;
-            gap: 30px;
-        }
+    .hero-imagem-wrapper {
+      position: relative;
+    }
 
-        .benefit-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 20px;
-        }
+    .hero-imagem {
+      border-radius: 24px;
+      overflow: hidden;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.7);
+    }
 
-        .benefit-icon {
-            width: 50px;
-            height: 50px;
-            background: #007bff;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            color: white;
-            flex-shrink: 0;
-        }
+    .hero-imagem img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
 
-        .benefit-item h3 {
-            font-size: 22px;
-            margin-bottom: 8px;
-            color: #333;
-        }
+    .hero-card-app {
+      position: absolute;
+      left: 14px;
+      bottom: 14px;
+      background: rgba(15, 23, 42, 0.9);
+      padding: 10px 14px;
+      border-radius: 12px;
+      color: #e5e7eb;
+      font-size: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(148, 163, 184, 0.5);
+    }
 
-        .benefit-item p {
-            font-size: 16px;
-            color: #666;
-            line-height: 1.6;
-        }
+    .hero-card-app strong {
+      font-size: 13px;
+    }
 
-        /* CTA MOTORISTAS (seção escura) */
-        .cta-drivers {
-            padding: 80px 20px;
-            background: #343a40;
-            color: white;
-            text-align: center;
-        }
+    .hero-card-app span {
+      font-size: 11px;
+      color: #9ca3af;
+    }
 
-        .cta-drivers h2 {
-            font-size: 40px;
-            margin-bottom: 20px;
-        }
+    /* SEÇÃO GENÉRICA */
+    section {
+      padding: 70px 0;
+    }
 
-        .cta-drivers p {
-            font-size: 18px;
-            margin-bottom: 40px;
-            opacity: 0.9;
-        }
+    .titulo-secao {
+      text-align: center;
+      font-size: 30px;
+      margin-bottom: 14px;
+      font-weight: 700;
+      color: var(--cor-escura);
+    }
 
-        /* FAQ (accordion simples) */
-        .faq {
-            padding: 80px 20px;
-            background: #f8f9fa;
-        }
+    .subtitulo-secao {
+      text-align: center;
+      font-size: 15px;
+      color: var(--cor-texto-suave);
+      max-width: 600px;
+      margin: 0 auto 40px;
+    }
 
-        .faq-container {
-            max-width: 900px;
-            margin: 0 auto;
-        }
+    /* COMO FUNCIONA */
+    .como-funciona-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+    }
 
-        details {
-            background: white;
-            padding: 25px;
-            border-radius: 10px;
-            margin-bottom: 15px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            cursor: pointer;
-        }
+    .card-passo {
+      background: var(--cor-clara);
+      padding: 24px 20px;
+      border-radius: 18px;
+      box-shadow: 0 10px 25px rgba(15, 23, 42, 0.06);
+      border: 1px solid #e5e7eb;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
 
-        summary {
-            font-size: 18px;
-            font-weight: 500;
-            color: #333;
-            list-style: none;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+    .card-passo-top {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
 
-        summary::after {
-            content: '+';
-            font-size: 24px;
-            color: #007bff;
-        }
+    .bolinha-passo {
+      width: 32px;
+      height: 32px;
+      border-radius: 999px;
+      background: rgba(37, 99, 235, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--cor-primaria);
+      font-weight: 600;
+      font-size: 14px;
+    }
 
-        details[open] summary::after {
-            content: '−';
-        }
+    .card-passo h3 {
+      font-size: 18px;
+      margin-bottom: 4px;
+    }
 
-        details p {
-            margin-top: 15px;
-            font-size: 16px;
-            color: #666;
-            line-height: 1.6;
-        }
+    .card-passo p {
+      font-size: 14px;
+      color: var(--cor-texto-suave);
+    }
 
-        /* FOOTER */
-        footer {
-            padding: 50px 20px 30px;
-            background: #343a40;
-            color: white;
-            text-align: center;
-        }
+    /* SERVIÇOS (CARRO, MOTO, FRETE, GUINCHO) */
+    .servicos-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 22px;
+    }
 
-        .footer-links {
-            margin: 20px 0;
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            flex-wrap: wrap;
-        }
+    .card-servico {
+      background: var(--cor-clara);
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 12px 26px rgba(15, 23, 42, 0.06);
+      border: 1px solid #e5e7eb;
+      display: flex;
+      flex-direction: column;
+      min-height: 270px;
+    }
 
-        .footer-links a {
-            color: #adb5bd;
-            text-decoration: none;
-            font-size: 14px;
-            transition: color 0.3s;
-        }
+    .card-servico-imagem {
+      height: 150px;
+      overflow: hidden;
+    }
 
-        .footer-links a:hover {
-            color: white;
-        }
+    .card-servico-imagem img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
 
-        .social-icons {
-            margin: 20px 0;
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-        }
+    .card-servico:hover .card-servico-imagem img {
+      transform: scale(1.06);
+    }
 
-        .social-icons a {
-            display: inline-block;
-        }
+    .card-servico-conteudo {
+      padding: 16px 16px 18px;
+    }
 
-        .social-icons img {
-            width: 32px;
-            height: 32px;
-            transition: transform 0.3s;
-        }
+    .card-servico-titulo {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
 
-        .social-icons img:hover {
-            transform: scale(1.1);
-        }
+    .card-servico-texto {
+      font-size: 14px;
+      color: var(--cor-texto-suave);
+      margin-bottom: 10px;
+    }
 
-        .copyright {
-            font-size: 14px;
-            color: #adb5bd;
-            margin-top: 20px;
-        }
+    .chip-servico {
+      display: inline-flex;
+      padding: 3px 10px;
+      border-radius: 999px;
+      background: #eff6ff;
+      color: #1d4ed8;
+      font-size: 11px;
+      font-weight: 600;
+    }
 
-        /* BOTÃO FLUTUANTE (adaptado para download de app ou contato) */
-        .float-button {
-            position: fixed;
-            width: 60px;
-            height: 60px;
-            bottom: 20px;
-            right: 20px;
-            background: #007bff;
-            color: white;
-            border-radius: 50%;
-            text-align: center;
-            font-size: 30px;
-            box-shadow: 0 4px 15px rgba(0,123,255,0.3);
-            z-index: 100;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s;
-            cursor: pointer;
-        }
+    /* POR QUE URBIFLY */
+    .porque-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+      gap: 36px;
+      align-items: center;
+    }
 
-        .float-button:hover {
-            transform: scale(1.1);
-            box-shadow: 0 6px 20px rgba(0,123,255,0.4);
-        }
+    .beneficios-lista {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
 
-        /* RESPONSIVO */
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 36px; }
-            .hero p { font-size: 16px; }
-            .cta-buttons { flex-direction: column; align-items: center; }
-            .benefits-grid { grid-template-columns: 1fr; gap: 40px; }
-            .section-title { font-size: 32px; }
-            .steps-grid { grid-template-columns: 1fr; }
-        }
-    </style>
+    .beneficio-item {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+
+    .beneficio-icone {
+      width: 40px;
+      height: 40px;
+      border-radius: 16px;
+      background: rgba(37, 99, 235, 0.06);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--cor-primaria);
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+
+    .beneficio-item h3 {
+      font-size: 16px;
+      margin-bottom: 4px;
+    }
+
+    .beneficio-item p {
+      font-size: 14px;
+      color: var(--cor-texto-suave);
+    }
+
+    .porque-imagem {
+      border-radius: 22px;
+      overflow: hidden;
+      box-shadow: 0 14px 32px rgba(15, 23, 42, 0.13);
+    }
+
+    /* CTA MOTORISTAS */
+    .cta-motoristas {
+      background: radial-gradient(circle at top left, #22c55e 0%, #14532d 45%, #020617 100%);
+      color: var(--cor-clara);
+      text-align: center;
+      padding: 70px 0;
+    }
+
+    .cta-motoristas h2 {
+      font-size: 30px;
+      margin-bottom: 10px;
+    }
+
+    .cta-motoristas p {
+      font-size: 15px;
+      color: #e5e7eb;
+      margin-bottom: 22px;
+    }
+
+    /* SEÇÃO WHATSAPP */
+    .whatsapp-secao {
+      background: linear-gradient(135deg, #22c55e, #16a34a);
+      color: #052e16;
+      text-align: center;
+      padding: 60px 0;
+    }
+
+    .whatsapp-secao h2 {
+      font-size: 26px;
+      margin-bottom: 10px;
+      font-weight: 700;
+    }
+
+    .whatsapp-secao p {
+      font-size: 15px;
+      margin-bottom: 24px;
+      color: #022c22;
+    }
+
+    .whatsapp-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 16px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .whatsapp-card {
+      background: #ecfdf5;
+      border-radius: 16px;
+      padding: 16px 10px;
+      font-weight: 600;
+      color: #065f46;
+      font-size: 15px;
+      box-shadow: 0 10px 22px rgba(4, 120, 87, 0.25);
+    }
+
+    .whatsapp-card:hover {
+      transform: translateY(-2px);
+    }
+
+    /* FAQ */
+    .faq-container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    details {
+      background: var(--cor-clara);
+      padding: 14px 16px;
+      border-radius: 14px;
+      margin-bottom: 12px;
+      box-shadow: 0 6px 18px rgba(15, 23, 42, 0.06);
+      border: 1px solid #e5e7eb;
+      cursor: pointer;
+    }
+
+    summary {
+      list-style: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--cor-escura);
+    }
+
+    summary::after {
+      content: "+";
+      font-weight: 700;
+      color: var(--cor-primaria);
+      margin-left: 10px;
+    }
+
+    details[open] summary::after {
+      content: "–";
+    }
+
+    details p {
+      margin-top: 8px;
+      font-size: 14px;
+      color: var(--cor-texto-suave);
+    }
+
+    /* FOOTER */
+    footer {
+      background: #020617;
+      color: #9ca3af;
+      padding: 40px 0 26px;
+      font-size: 13px;
+    }
+
+    .footer-top {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 24px;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .footer-logo {
+      font-weight: 700;
+      font-size: 18px;
+      color: #e5e7eb;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .footer-links a {
+      color: #9ca3af;
+      font-size: 13px;
+    }
+
+    .footer-links a:hover {
+      color: #e5e7eb;
+    }
+
+    .footer-social {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .footer-social a img {
+      width: 26px;
+      height: 26px;
+      filter: grayscale(15%);
+      transition: transform 0.2s ease, filter 0.2s ease;
+    }
+
+    .footer-social a img:hover {
+      transform: translateY(-1px) scale(1.02);
+      filter: grayscale(0%);
+    }
+
+    .footer-bottom {
+      border-top: 1px solid #111827;
+      padding-top: 14px;
+      text-align: center;
+      font-size: 12px;
+      color: #6b7280;
+    }
+
+    /* BOTÃO FLUTUANTE WHATSAPP */
+    .whatsapp-flutuante {
+      position: fixed;
+      width: 64px;
+      height: 64px;
+      bottom: 26px;
+      right: 22px;
+      background: #22c55e;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 16px 32px rgba(22, 163, 74, 0.6);
+      z-index: 50;
+      animation: pulse 2.4s infinite;
+    }
+
+    .whatsapp-flutuante img {
+      width: 38px;
+      height: 38px;
+    }
+
+    @keyframes pulse {
+      0% {
+        box-shadow: 0 0 0 0 rgba(22, 163, 74, 0.7);
+      }
+      70% {
+        box-shadow: 0 0 0 18px rgba(22, 163, 74, 0);
+      }
+      100% {
+        box-shadow: 0 0 0 0 rgba(22, 163, 74, 0);
+      }
+    }
+
+    /* RESPONSIVO */
+    @media (max-width: 900px) {
+      .hero-conteudo {
+        grid-template-columns: 1fr;
+      }
+      .hero-imagem-wrapper {
+        order: -1;
+        margin-bottom: 14px;
+      }
+      .hero-titulo {
+        font-size: 30px;
+      }
+      .hero-subtitulo {
+        font-size: 15px;
+      }
+      .hero-nav-links {
+        display: none;
+      }
+      section {
+        padding: 54px 0;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .whatsapp-flutuante {
+        width: 56px;
+        height: 56px;
+      }
+      .whatsapp-flutuante img {
+        width: 32px;
+        height: 32px;
+      }
+    }
+  </style>
 </head>
 <body>
-
-    <!-- HERO SECTION -->
-    <section class="hero">
-        <div class="container">
-            <div class="logo">🚗 URBIFLY</div>
-            <h1>Mobilidade Urbana em Fortaleza</h1>
-            <p>Viaje com segurança, conforto e praticidade. Baixe o app e descubra uma nova forma de se locomover na cidade.</p>
-            <div class="cta-buttons">
-                <a href="https://play.google.com/store/apps/details?id=com.urbifly.app" class="cta-primary" target="_blank">BAIXAR NO GOOGLE PLAY</a>
-                <a href="https://apps.apple.com/app/urbifly/id123456789" class="cta-secondary" target="_blank">BAIXAR NA APP STORE</a>
-            </div>
-            <div class="social-proof">
-                <span>✅ 500+ viagens realizadas</span>
-                <span>⭐ Avaliação 4.9/5</span>
-                <span>🚗 20+ motoristas verificados</span>
-            </div>
+ <!-- HERO -->
+  <header class="hero">
+    <div class="container">
+      <nav class="hero-nav">
+        <div class="logo-texto">
+          <div class="logo-marca">U</div>
+          <span>URBIFLY</span>
         </div>
-    </section>
-
-    <!-- COMO FUNCIONA -->
-    <section class="how-it-works">
-        <div class="container">
-            <h2 class="section-title">Como Funciona?</h2>
-            <div class="steps-grid">
-                <div class="step-card">
-                    <div class="step-icon">📍</div>
-                    <h3>1. Solicite sua Viagem</h3>
-                    <p>Abra o app, insira seu destino e veja o valor da corrida em tempo real. Sem surpresas!</p>
-                </div>
-                <div class="step-card">
-                    <div class="step-icon">✅</div>
-                    <h3>2. Confirmação Instantânea</h3>
-                    <p>O app conecta você ao motorista mais próximo. Receba detalhes da viagem em segundos.</p>
-                </div>
-                <div class="step-card">
-                    <div class="step-icon">🚗</div>
-                    <h3>3. Viaje com Segurança</h3>
-                    <p>Rastreamento em tempo real, pagamento integrado e avaliação pós-viagem para garantir qualidade.</p>
-                </div>
-            </div>
+        <div class="hero-nav-links">
+          <a href="#como-funciona">Como funciona</a>
+          <a href="#servicos">Serviços</a>
+          <a href="#porque">Por que URBIFLY</a>
+          <a href="#motoristas">Motoristas</a>
+          <a href="#faq">FAQ</a>
         </div>
-    </section>
+      </nav>
 
-    <!-- DIFERENCIAIS -->
-    <section class="benefits">
-        <div class="container">
-            <h2 class="section-title">Por Que Escolher a URBIFLY?</h2>
-            <div class="benefits-grid">
-                <div class="benefit-image">
-                    <img src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=600&h=400&fit=crop" alt="Motorista URBIFLY" loading="lazy">
-                </div>
-                <div class="benefit-list">
-                    <div class="benefit-item">
-                        <div class="benefit-icon">🛡️</div>
-                        <div>
-                            <h3>Segurança Verificada</h3>
-                            <p>Todos os motoristas passam por análise rigorosa de documentos, antecedentes e treinamento. Sua segurança em primeiro lugar.</p>
-                        </div>
-                    </div>
-                    <div class="benefit-item">
-                        <div class="benefit-icon">💳</div>
-                        <div>
-                            <h3>Pagamento Seguro</h3>
-                            <p>Integrado ao app com Pix, cartão de crédito e débito. Sem manuseio de dinheiro durante a viagem.</p>
-                        </div>
-                    </div>
-                    <div class="benefit-item">
-                        <div class="benefit-icon">📱</div>
-                        <div>
-                            <h3>Rastreamento em Tempo Real</h3>
-                            <p>Acompanhe a chegada do motorista e compartilhe sua localização com amigos e familiares.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+      <div class="hero-conteudo">
+        <div>
+          <div class="hero-badge">
+            <span>🚀 Mobilidade urbana em Fortaleza e região</span>
+          </div>
+          <h1 class="hero-titulo">
+            Mobilidade inteligente com Carro, Moto, Frete e Guincho.
+          </h1>
+          <p class="hero-subtitulo">
+            URBIFLY conecta você a motoristas selecionados, com app próprio e opção de
+            pedido direto via WhatsApp 0800‑000‑4185.
+          </p>
+
+          <div class="hero-botoes">
+            <!-- Substituir o link abaixo pelo link direto do app, quando tiver -->
+            <a
+              href="https://play.google.com/store/search?q=urbifly&c=apps"
+              target="_blank"
+              class="btn btn-primario"
+            >
+              <span>📲 Baixar app URBIFLY</span>
+            </a>
+
+            <a href="#whatsapp" class="btn btn-secundario">
+              <span>💬 Pedir pelo WhatsApp 0800‑000‑4185</span>
+            </a>
+          </div>
+
+          <div class="hero-proof">
+            <span>✅ +500 viagens realizadas</span>
+            <span>⭐ Avaliação média 4,9/5</span>
+            <span>🚗 Motoristas verificados</span>
+          </div>
         </div>
-    </section>
 
-    <!-- CTA MOTORISTAS -->
-    <section class="cta-drivers">
-        <div class="container">
-            <h2>Seja um Motorista URBIFLY</h2>
-            <p>Trabalhe com flexibilidade, ganhe bem e faça parte de uma comunidade que valoriza profissionais comprometidos.</p>
-            <a href="https://wa.me/5585992463112?text=Olá!%20Quero%20ser%20motorista%20da%20URBIFLY" class="cta-primary" target="_blank" style="display: inline-block; margin-top: 20px;">QUERO SER MOTORISTA</a>
+        <div class="hero-imagem-wrapper">
+          <div class="hero-imagem">
+            <img
+              src="https://raw.githubusercontent.com/jeova-git/urbifly/main/images/motorista-app.jpg.png"
+              alt="Motorista usando o app URBIFLY"
+            />
+          </div>
+          <div class="hero-card-app">
+            <strong>URBIFLY App</strong>
+            <span>Solicite Carro, Moto, Frete e Guincho em poucos toques.</span>
+          </div>
         </div>
-    </section>
+      </div>
+    </div>
+  </header>
 
-    <!-- FAQ -->
-    <section class="faq">
-        <div class="container">
-            <h2 class="section-title">Perguntas Frequentes</h2>
-            <div class="faq-container">
-                <details>
-                    <summary>Preciso baixar o app?</summary>
-                    <p>Sim! O app é a forma mais segura e prática de solicitar viagens. Disponível para Android e iOS.</p>
-                </details>
-                <details>
-                    <summary>Como funciona o pagamento?</summary>
-                    <p>O pagamento é integrado ao app via Pix ou cartão. Você só confirma no final da viagem.</p>
-                </details>
-                <details>
-                    <summary>Os motoristas são verificados?</summary>
-                    <p>Sim, todos passam por verificação completa de documentos, antecedentes e treinamento obrigatório.</p>
-                </details>
-                <details>
-                    <summary>Qual a área de cobertura?</summary>
-                    <p>Atendemos toda a região metropolitana de Fortaleza, incluindo Caucaia e Eusébio.</p>
-                </details>
+  <!-- COMO FUNCIONA -->
+  <section id="como-funciona">
+    <div class="container">
+      <h2 class="titulo-secao">Como funciona na prática</h2>
+      <p class="subtitulo-secao">
+        Você escolhe como quer pedir: pelo app ou pelo WhatsApp 0800‑000‑4185. Em ambos os casos,
+        nosso objetivo é o mesmo: atender você com segurança, rapidez e clareza.
+      </p>
+
+      <div class="como-funciona-grid">
+        <div class="card-passo">
+          <div class="card-passo-top">
+            <div class="bolinha-passo">1</div>
+            <div>
+              <h3>Escolha o canal</h3>
+              <p>App URBIFLY ou WhatsApp 0800‑000‑4185.</p>
             </div>
+          </div>
+          <p>
+            Abra o app URBIFLY para uma experiência completa, com mapa, histórico e mais recursos.
+            Se preferir, envie uma mensagem para o nosso WhatsApp informando o tipo de serviço.
+          </p>
         </div>
-    </section>
 
-    <!-- FOOTER -->
-    <footer>
-        <div class="container">
-            <div class="logo" style="color: white; font-size: 32px; margin-bottom: 20px;">URBIFLY</div>
-            <div class="footer-links">
-                <a href="#sobre">Sobre</a>
-                <a href="#termos">Termos de Uso</a>
-                <a href="#privacidade">Privacidade</a>
-                <a href="#contato">Contato</a>
+        <div class="card-passo">
+          <div class="card-passo-top">
+            <div class="bolinha-passo">2</div>
+            <div>
+              <h3>Informe origem, destino e serviço</h3>
+              <p>Carro, Moto, Frete ou Guincho.</p>
             </div>
-            <div class="social-icons">
-                <a href="https://instagram.com/jeovasoares.eng.ascest" target="_blank">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram">
-                </a>
-                <a href="https://facebook.com/ASCEST-Engenharia" target="_blank">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook">
-                </a>
-            </div>
-            <div class="copyright">
-                © 2025 URBIFLY - ASCEST Engenharia. Todos os direitos reservados.<br>
-                CNPJ: XX.XXX.XXX/0001-XX | Fortaleza, CE
-            </div>
+          </div>
+          <p>
+            Informe o ponto de partida, o destino e o tipo de atendimento desejado.
+            Nossa equipe ou o sistema localizam o melhor motorista ou parceiro disponível.
+          </p>
         </div>
-    </footer>
 
-    <!-- BOTÃO FLUTUANTE (para contato rápido) -->
-    <a href="https://wa.me/5585992463112?text=Olá!%20Tenho%20dúvidas%20sobre%20a%20URBIFLY" class="float-button" target="_blank" title="Fale conosco">
-        💬
-    </a>
+        <div class="card-passo">
+          <div class="card-passo-top">
+            <div class="bolinha-passo">3</div>
+            <div>
+              <h3>Confirmação e acompanhamento</h3>
+              <p>Viagem com segurança e suporte.</p>
+            </div>
+          </div>
+          <p>
+            Você recebe a confirmação do serviço, acompanha a chegada do motorista
+            e realiza o deslocamento com segurança e transparência.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
 
+  <!-- SERVIÇOS -->
+  <section id="servicos">
+    <div class="container">
+      <h2 class="titulo-secao">Serviços URBIFLY</h2>
+      <p class="subtitulo-secao">
+        Uma solução única para diferentes necessidades: do deslocamento diário ao transporte de cargas
+        e atendimento em situações emergenciais.
+      </p>
+
+      <div class="servicos-grid">
+        <!-- CARRO -->
+        <div class="card-servico">
+          <div class="card-servico-imagem">
+            <img
+              src="https://raw.githubusercontent.com/jeova-git/urbifly/main/images/carro.jpg.jpeg"
+              alt="Serviço de carro URBIFLY"
+            />
+          </div>
+          <div class="card-servico-conteudo">
+            <div class="card-servico-titulo">
+              🚗 Carro
+              <span class="chip-servico">Mobilidade diária</span>
+            </div>
+            <p class="card-servico-texto">
+              Corridas urbanas com conforto e segurança, ideais para compromissos,
+              lazer ou deslocamentos diários em Fortaleza e região.
+            </p>
+          </div>
+        </div>
+
+        <!-- MOTO -->
+        <div class="card-servico">
+          <div class="card-servico-imagem">
+            <img
+              src="https://raw.githubusercontent.com/jeova-git/urbifly/main/images/moto.jpg.jpg"
+              alt="Serviço de moto URBIFLY"
+            />
+          </div>
+          <div class="card-servico-conteudo">
+            <div class="card-servico-titulo">
+              🏍️ Moto
+              <span class="chip-servico">Agilidade</span>
+            </div>
+            <p class="card-servico-texto">
+              Perfeito para quem precisa de rapidez em deslocamentos curtos ou entregas,
+              com praticidade e velocidade no trânsito urbano.
+            </p>
+          </div>
+        </div>
+
+        <!-- FRETE -->
+        <div class="card-servico">
+          <div class="card-servico-imagem">
+            <img
+              src="https://raw.githubusercontent.com/jeova-git/urbifly/main/images/frete.jpg.png"
+              alt="Serviço de frete URBIFLY"
+            />
+          </div>
+          <div class="card-servico-conteudo">
+            <div class="card-servico-titulo">
+              📦 Frete
+              <span class="chip-servico">Transporte de volumes</span>
+            </div>
+            <p class="card-servico-texto">
+              Para mudanças, mercadorias ou cargas diversas. Conectamos você a motoristas
+              preparados para atender sua demanda com organização.
+            </p>
+          </div>
+        </div>
+
+        <!-- GUINCHO -->
+        <div class="card-servico">
+          <div class="card-servico-imagem">
+            <img
+              src="https://raw.githubusercontent.com/jeova-git/urbifly/main/images/guincho.jpg.png"
+              alt="Serviço de guincho URBIFLY"
+            />
+          </div>
+          <div class="card-servico-conteudo">
+            <div class="card-servico-titulo">
+              🚑 Guincho
+              <span class="chip-servico">Atendimento emergencial</span>
+            </div>
+            <p class="card-servico-texto">
+              Apoio em situações de pane ou acidente, com parceiros selecionados
+              para atendimento ágil e responsável.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- POR QUE URBIFLY -->
+  <section id="porque">
+    <div class="container">
+      <h2 class="titulo-secao">Por que escolher a URBIFLY?</h2>
+      <p class="subtitulo-secao">
+        A URBIFLY nasce aliando experiência em engenharia, gestão e tecnologia,
+        para oferecer uma operação profissional e próxima da realidade local.
+      </p>
+
+      <div class="porque-grid">
+        <div class="beneficios-lista">
+          <div class="beneficio-item">
+            <div class="beneficio-icone">🛡️</div>
+            <div>
+              <h3>Segurança e critério na seleção</h3>
+              <p>
+                Motoristas e parceiros passam por análise criteriosa, com foco em segurança, 
+                responsabilidade e qualidade no atendimento.
+              </p>
+            </div>
+          </div>
+
+          <div class="beneficio-item">
+            <div class="beneficio-icone">📊</div>
+            <div>
+              <h3>Gestão profissional do serviço</h3>
+              <p>
+                Processos desenhados com base em princípios de engenharia e gestão,
+                visando eficiência, controle e melhoria contínua.
+              </p>
+            </div>
+          </div>
+
+          <div class="beneficio-item">
+            <div class="beneficio-icone">🧩</div>
+            <div>
+              <h3>Ecossistema de soluções</h3>
+              <p>
+                De corridas urbanas a fretes e guinchos, a URBIFLY se posiciona como
+                um hub de mobilidade e serviços, conectado às necessidades reais da cidade.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="porque-imagem">
+          <img
+            src="https://raw.githubusercontent.com/jeova-git/urbifly/main/images/frete.jpg.png"
+            alt="Cliente em mudança usando serviços URBIFLY"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA MOTORISTAS -->
+  <section id="motoristas" class="cta-motoristas">
+    <div class="container">
+      <h2>Seja motorista ou parceiro URBIFLY</h2>
+      <p>
+        Se você atua com Carro, Moto, Frete ou Guincho, pode se conectar a uma base de clientes
+        em expansão, com visão de longo prazo e valorização do profissional.
+      </p>
+
+      <a
+        href="https://wa.me/5508000004185?text=Olá!%20Quero%20me%20cadastrar%20como%20motorista%20ou%20parceiro%20URBIFLY."
+        target="_blank"
+        class="btn btn-primario"
+      >
+        💼 Quero ser motorista/parceiro
+      </a>
+    </div>
+  </section>
+
+  <!-- WHATSAPP -->
+  <section id="whatsapp" class="whatsapp-secao">
+    <div class="container">
+      <h2>Prefere pedir pelo WhatsApp?</h2>
+      <p>
+        Use o número <strong>0800‑000‑4185</strong> para solicitar diretamente um
+        dos serviços URBIFLY.
+      </p>
+
+      <div class="whatsapp-grid">
+        <a
+          href="https://wa.me/5508000004185?text=Olá!%20Quero%20solicitar%20um%20CARRO%20URBIFLY."
+          target="_blank"
+          class="whatsapp-card"
+        >
+          🚗 Pedir Carro
+        </a>
+        <a
+          href="https://wa.me/5508000004185?text=Olá!%20Quero%20solicitar%20uma%20MOTO%20URBIFLY."
+          target="_blank"
+          class="whatsapp-card"
+        >
+          🏍️ Pedir Moto
+        </a>
+        <a
+          href="https://wa.me/5508000004185?text=Olá!%20Quero%20solicitar%20um%20FRETE%20URBIFLY."
+          target="_blank"
+          class="whatsapp-card"
+        >
+          📦 Pedir Frete
+        </a>
+        <a
+          href="https://wa.me/5508000004185?text=Olá!%20Preciso%20de%20um%20GUINCHO%20URBIFLY."
+          target="_blank"
+          class="whatsapp-card"
+        >
+          🚑 Pedir Guincho
+        </a>
+      </div>
+
+      <p style="margin-top: 16px; font-size: 13px;">
+        ⚡ Atendimento orientado conforme o tipo de serviço | 🔒 Canal oficial URBIFLY
+      </p>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <div class="container">
+      <h2 class="titulo-secao">Perguntas Frequentes</h2>
+      <p class="subtitulo-secao">
+        Algumas respostas rápidas sobre como a URBIFLY funciona neste momento.
+      </p>
+
+      <div class="faq-container">
+        <details>
+          <summary>Posso pedir serviços tanto pelo app quanto pelo WhatsApp?</summary>
+          <p>
+            Sim. O app URBIFLY é o principal canal de experiência, mas o WhatsApp 0800‑000‑4185
+            está disponível como alternativa para solicitar Carro, Moto, Frete ou Guincho.
+          </p>
+        </details>
+
+        <details>
+          <summary>O app já está disponível para Android e iOS?</summary>
+          <p>
+            O app URBIFLY já está disponível para Android na Google Play.
+            A versão para iOS (App Store) está em desenvolvimento e será lançada em breve.
+          </p>
+        </details>
+
+        <details>
+          <summary>Quais serviços estão disponíveis hoje?</summary>
+          <p>
+            Atualmente atendemos com serviços de <strong>Carro</strong>, <strong>Moto</strong>,
+            <strong>Frete</strong> e <strong>Guincho</strong>, conforme a necessidade do cliente.
+          </p>
+        </details>
+
+        <details>
+          <summary>Como funciona a seleção de motoristas e parceiros?</summary>
+          <p>
+            A URBIFLY adota critérios de análise e validação de documentos, além de observação
+            de conduta e alinhamento com os princípios do projeto, buscando segurança
+            e responsabilidade em cada atendimento.
+          </p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-top">
+        <div>
+          <div class="footer-logo">URBIFLY</div>
+          <div style="font-size: 12px; color: #6b7280; margin-top: 4px;">
+            Um projeto vinculado à atuação em engenharia, mobilidade e empreendedorismo.
+          </div>
+        </div>
+
+        <div class="footer-links">
+          <a href="#como-funciona">Como funciona</a>
+          <a href="#servicos">Serviços</a>
+          <a href="#motoristas">Motoristas</a>
+          <a href="#whatsapp">WhatsApp 0800‑000‑4185</a>
+        </div>
+
+        <div class="footer-social">
+          <a href="https://www.linkedin.com/in/jeová-soares-4b33963b" target="_blank" aria-label="LinkedIn">
+            <img
+              src="https://cdn-icons-png.flaticon.com/512/174/174857.png"
+              alt="LinkedIn"
+            />
+          </a>
+          <a href="https://instagram.com/jeovasoares.eng.ascest" target="_blank" aria-label="Instagram">
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png"
+              alt="Instagram"
+            />
+          </a>
+          <a href="https://facebook.com/ASCEST-Engenharia" target="_blank" aria-label="Facebook">
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg"
+              alt="Facebook"
+            />
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        © 2025 URBIFLY. Todos os direitos reservados. Projeto vinculado à ASCEST Engenharia.
+      </div>
+    </div>
+  </footer>
+
+  <!-- BOTÃO FLUTUANTE WHATSAPP -->
+  <a
+    href="https://wa.me/5508000004185?text=Olá!%20Quero%20solicitar%20um%20serviço%20URBIFLY."
+    target="_blank"
+    class="whatsapp-flutuante"
+    aria-label="Pedir serviço URBIFLY pelo WhatsApp"
+  >
+    <img
+      src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
+      alt="WhatsApp"
+    />
+  </a>
 </body>
 </html>
